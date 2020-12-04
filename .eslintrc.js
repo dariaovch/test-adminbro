@@ -1,5 +1,12 @@
 module.exports = {
-  extends: ['airbnb-base'],
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  extends: ['airbnb-base', 'eslint:recommended', 'plugin:react/recommended'],
   rules: {
     'no-underscore-dangle': ['error', {
       allow: ['_id'],
