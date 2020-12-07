@@ -1,6 +1,7 @@
 # Admin Panel with Authentication
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m2K7rR7kSgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## Скринкаст аутентификации и добавления записи в БД
+[![Watch the video](https://youtu.be/m2K7rR7kSgU)
 
 ## Директории
 
