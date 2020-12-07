@@ -17,7 +17,10 @@ App.js конфигурирует панель администрации
 ## Запуск проекта
 
 `git clone https://github.com/dariaovch/test-adminbro.git` - клонирование репозитория
+
 `npm install` - установка зависимостей
+
 `npm run start` — запускает сервер   
+
 `npm run dev` — запускает сервер с hot-reload
 
