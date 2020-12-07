@@ -8,19 +8,21 @@ import { Box } from '@admin-bro/design-system';
 const api = new ApiClient();
 
 export default function Dashboard() {
-  // const [data, setData] = React.useState({});
+  const [data, setData] = React.useState({});
 
-  // React.useEffect(() => {
-  //   api.getDashboard()
-  //     .then((res) => {
-  //       setData(res.data);
-  //     });
-  // }, []);
+  React.useEffect(() => {
+    api.getDashboard()
+      .then((res) => {
+        setData(res.data);
+        console.log(data);
+      });
+  }, []);
 
   return (
     <Box variant="grey">
       <Box variant="white">
-        {/* some: { data.some } */}
+        {data.sky}
+        {console.log(data)}
       </Box>
     </Box>
   );

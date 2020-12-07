@@ -38,30 +38,36 @@ const adminBro = new AdminBro({
     companyName: 'Daria LLC',
   },
   dashboard: {
-    // handler: ,
+    handler: async () => {
+      return  adminBro.options.resources;
+    },
     component: AdminBro.bundle('./src/dashboard'),
   },
 });
 
-// const ADMIN = {
-//   email: 'test@example.com',
-//   password: 'password',
-// };
+const ADMIN = {
+  email: 'test@example.com',
+  password: 'password',
+};
 
-const router = AdminBroExpress.buildRouter(adminBro);
+//const router = AdminBroExpress.buildRouter(adminBro);
 
-// AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-//   authenticate: async (email, password) => {
-//     if (ADMIN.password === password && ADMIN.email === email) {
-//       return ADMIN;
-//     }
-//     return null;
-//   },
-//   cookieName: 'adminbro',
-//   cookiePassword: 'somePassword',
-// }, [router]);
+const authRouter = (admin) => {
+  const router =  AdminBroExpress.buildAuthenticatedRouter(admin, {
+    cookieName: 'adminbro',
+    cookiePassword: 'somePassword',
+    authenticate: async (email, password) => {
+      if (ADMIN.password === password && ADMIN.email === email) {
+        return ADMIN;
+      }
+      return null;
+    }
+  });
+  return router
+};
 
-app.use(adminBro.options.rootPath, router);
+
+app.use(adminBro.options.rootPath, authRouter(adminBro));
 
 app.listen(PORT, () => {
   console.log(`The AdminBro app is listening to port ${PORT}`);
