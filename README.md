@@ -1,7 +1,7 @@
 # Admin Panel with Authentication
 
 ## Скринкаст аутентификации и добавления записи в БД
-[![Watch the video](https://youtu.be/m2K7rR7kSgU)
+https://youtu.be/m2K7rR7kSgU
 
 ## Директории
 
