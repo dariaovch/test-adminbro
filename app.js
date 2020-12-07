@@ -2,6 +2,7 @@ const AdminBro = require('admin-bro');
 const AdminBroExpress = require('@admin-bro/express');
 const AdminBroSequelize = require('@admin-bro/sequelize');
 
+// Подключаемся к ORM, тестируем подключение и регистрируем адаптер
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('postgres://daraovcinnikova@localhost:5432/weather_db');
@@ -17,7 +18,7 @@ sequelize.authenticate()
 AdminBro.registerAdapter(AdminBroSequelize);
 
 const express = require('express');
-
+// Модель для ввода данных о погоде
 const Weather = require('./models/weather');
 
 // Назначаем порт, с которого приложение слушает запросы
@@ -25,13 +26,14 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+// Кастомизация навигационной панели
 const testDataBase = {
   name: 'TestDataBase',
   icon: 'MostlyCloudy',
 };
 
+// Объект опций для админки
 const adminBro = new AdminBro({
-  // databases: [sequelize],
   resources: [{ resource: Weather, options: { navigation: testDataBase } }],
   rootPath: '/admin',
   branding: {
@@ -39,19 +41,19 @@ const adminBro = new AdminBro({
   },
   dashboard: {
     handler: async () => {
-      return  adminBro.options.resources;
-    },
+        return { resourceId: 'weather', action: 'list' };
+   },
     component: AdminBro.bundle('./src/dashboard'),
   },
 });
 
+// Захардкодили данные для учетной записи админа
 const ADMIN = {
   email: 'test@example.com',
   password: 'password',
 };
 
-//const router = AdminBroExpress.buildRouter(adminBro);
-
+// Создаем роутер с аутентификацией
 const authRouter = (admin) => {
   const router =  AdminBroExpress.buildAuthenticatedRouter(admin, {
     cookieName: 'adminbro',
@@ -63,7 +65,7 @@ const authRouter = (admin) => {
       return null;
     }
   });
-  return router
+  return router;
 };
 
 
